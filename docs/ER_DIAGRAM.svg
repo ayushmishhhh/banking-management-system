@@ -1,0 +1,374 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 900" width="100%" height="100%" style="background-color: #f8fafc; font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="4" stdDeviation="6" flood-color="#0f172a" flood-opacity="0.08" />
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#3b82f6" />
+    </marker>
+    <marker id="circle" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6">
+      <circle cx="5" cy="5" r="3" fill="#ffffff" stroke="#3b82f6" stroke-width="2" />
+    </marker>
+  </defs>
+
+  <!-- Title & Header -->
+  <rect x="0" y="0" width="1200" height="80" fill="#1e3a8a" />
+  <text x="600" y="42" text-anchor="middle" fill="#ffffff" font-size="22" font-weight="700" letter-spacing="0.5">BANK OF BAGRU — RELATIONAL ENTITY-RELATIONSHIP (ER) DIAGRAM</text>
+  <text x="600" y="66" text-anchor="middle" fill="#93c5fd" font-size="13">Database: bank_of_bagru_db | Engine: MySQL 8.0 InnoDB | Strict 3NF Normalized</text>
+
+  <!-- Relationship Connectors (Paths behind tables) -->
+  <!-- BRANCHES (40, 120) to USERS (40, 480) -->
+  <path d="M 180 370 L 180 480" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+  <rect x="135" y="415" width="90" height="20" rx="4" fill="#ffffff" stroke="#cbd5e1" />
+  <text x="180" y="429" text-anchor="middle" fill="#475569" font-size="10" font-weight="600">employs (1:N)</text>
+
+  <!-- BRANCHES (40, 120) to ACCOUNTS (460, 120) -->
+  <path d="M 320 220 L 460 220" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)" />
+  <rect x="345" y="208" width="90" height="22" rx="4" fill="#ffffff" stroke="#93c5fd" />
+  <text x="390" y="223" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="700">maintains (1:N)</text>
+
+  <!-- CUSTOMERS (880, 120) to ACCOUNTS (460, 120) -->
+  <path d="M 880 220 L 740 220" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)" />
+  <rect x="765" y="208" width="90" height="22" rx="4" fill="#ffffff" stroke="#93c5fd" />
+  <text x="810" y="223" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="700">owns (1:N)</text>
+
+  <!-- CUSTOMERS (880, 120) to LOANS (880, 520) -->
+  <path d="M 1020 370 L 1020 520" fill="none" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)" />
+  <rect x="965" y="435" width="110" height="22" rx="4" fill="#ffffff" stroke="#93c5fd" />
+  <text x="1020" y="450" text-anchor="middle" fill="#1d4ed8" font-size="11" font-weight="700">applies for (1:N)</text>
+
+  <!-- BRANCHES (40, 120) to LOANS (880, 520) -->
+  <path d="M 280 370 C 280 470, 780 470, 880 620" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="5,5" marker-end="url(#arrow)" />
+  <rect x="520" y="460" width="120" height="22" rx="4" fill="#ffffff" stroke="#a7f3d0" />
+  <text x="580" y="475" text-anchor="middle" fill="#047857" font-size="11" font-weight="700">underwrites (1:N)</text>
+
+  <!-- ACCOUNTS (460, 120) to BANK_TRANSACTIONS (460, 500) -->
+  <path d="M 600 400 L 600 500" fill="none" stroke="#dc2626" stroke-width="2.5" marker-end="url(#arrow)" />
+  <rect x="535" y="435" width="130" height="22" rx="4" fill="#ffffff" stroke="#fca5a5" />
+  <text x="600" y="450" text-anchor="middle" fill="#b91c1c" font-size="11" font-weight="700">records ledger (1:N)</text>
+
+  <!-- BANK_TRANSACTIONS self-referential / related_account loop -->
+  <path d="M 460 620 C 390 620, 390 320, 460 320" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,4" marker-end="url(#arrow)" />
+  <rect x="350" y="340" width="105" height="22" rx="4" fill="#ffffff" stroke="#fed7aa" />
+  <text x="402" y="355" text-anchor="middle" fill="#c2410c" font-size="10" font-weight="600">counterparty (FK)</text>
+
+
+  <!-- ================= ENTITY 1: BRANCHES ================= -->
+  <g transform="translate(40, 120)" filter="url(#shadow)">
+    <rect width="280" height="250" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 8 Q 0 0 8 0 L 272 0 Q 280 0 280 8 L 280 40 L 0 40 Z" fill="#1e3a8a" />
+    <text x="14" y="26" fill="#ffffff" font-size="14" font-weight="700">BRANCHES</text>
+    <rect x="210" y="10" width="56" height="20" rx="4" fill="#3b82f6" />
+    <text x="238" y="24" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">TABLE</text>
+
+    <!-- Attributes -->
+    <!-- branch_id PK -->
+    <rect x="10" y="48" width="28" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" />
+    <text x="24" y="61" text-anchor="middle" fill="#b45309" font-size="10" font-weight="700">PK</text>
+    <text x="46" y="62" fill="#0f172a" font-size="12" font-weight="600">branch_id</text>
+    <text x="265" y="62" text-anchor="end" fill="#64748b" font-size="11">INT (AUTO)</text>
+
+    <!-- branch_name -->
+    <text x="46" y="88" fill="#0f172a" font-size="12">branch_name</text>
+    <text x="265" y="88" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(100)</text>
+
+    <!-- ifsc_code UK -->
+    <rect x="10" y="102" width="28" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1" />
+    <text x="24" y="115" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="700">UK</text>
+    <text x="46" y="115" fill="#0f172a" font-size="12" font-weight="600">ifsc_code</text>
+    <text x="265" y="115" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(20)</text>
+
+    <!-- branch_address -->
+    <text x="46" y="142" fill="#0f172a" font-size="12">branch_address</text>
+    <text x="265" y="142" text-anchor="end" fill="#64748b" font-size="11">TEXT</text>
+
+    <!-- city -->
+    <text x="46" y="168" fill="#0f172a" font-size="12">city</text>
+    <text x="265" y="168" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(50)</text>
+
+    <!-- state -->
+    <text x="46" y="195" fill="#0f172a" font-size="12">state</text>
+    <text x="265" y="195" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(50)</text>
+
+    <!-- created_at -->
+    <text x="46" y="222" fill="#0f172a" font-size="12">created_at</text>
+    <text x="265" y="222" text-anchor="end" fill="#64748b" font-size="11">TIMESTAMP</text>
+  </g>
+
+
+  <!-- ================= ENTITY 2: CUSTOMERS ================= -->
+  <g transform="translate(880, 120)" filter="url(#shadow)">
+    <rect width="280" height="250" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 8 Q 0 0 8 0 L 272 0 Q 280 0 280 8 L 280 40 L 0 40 Z" fill="#1e3a8a" />
+    <text x="14" y="26" fill="#ffffff" font-size="14" font-weight="700">CUSTOMERS</text>
+    <rect x="210" y="10" width="56" height="20" rx="4" fill="#3b82f6" />
+    <text x="238" y="24" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">TABLE</text>
+
+    <!-- Attributes -->
+    <!-- customer_id PK -->
+    <rect x="10" y="48" width="28" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" />
+    <text x="24" y="61" text-anchor="middle" fill="#b45309" font-size="10" font-weight="700">PK</text>
+    <text x="46" y="62" fill="#0f172a" font-size="12" font-weight="600">customer_id</text>
+    <text x="265" y="62" text-anchor="end" fill="#64748b" font-size="11">INT (AUTO)</text>
+
+    <!-- full_name -->
+    <text x="46" y="88" fill="#0f172a" font-size="12">full_name</text>
+    <text x="265" y="88" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(100)</text>
+
+    <!-- date_of_birth -->
+    <text x="46" y="115" fill="#0f172a" font-size="12">date_of_birth</text>
+    <text x="265" y="115" text-anchor="end" fill="#64748b" font-size="11">DATE</text>
+
+    <!-- email UK -->
+    <rect x="10" y="129" width="28" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1" />
+    <text x="24" y="142" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="700">UK</text>
+    <text x="46" y="142" fill="#0f172a" font-size="12" font-weight="600">email</text>
+    <text x="265" y="142" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(100)</text>
+
+    <!-- phone UK -->
+    <rect x="10" y="156" width="28" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1" />
+    <text x="24" y="169" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="700">UK</text>
+    <text x="46" y="169" fill="#0f172a" font-size="12" font-weight="600">phone</text>
+    <text x="265" y="169" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(20)</text>
+
+    <!-- address -->
+    <text x="46" y="196" fill="#0f172a" font-size="12">address</text>
+    <text x="265" y="196" text-anchor="end" fill="#64748b" font-size="11">TEXT</text>
+
+    <!-- created_at -->
+    <text x="46" y="223" fill="#0f172a" font-size="12">created_at</text>
+    <text x="265" y="223" text-anchor="end" fill="#64748b" font-size="11">TIMESTAMP</text>
+  </g>
+
+
+  <!-- ================= ENTITY 3: ACCOUNTS ================= -->
+  <g transform="translate(460, 120)" filter="url(#shadow)">
+    <rect width="280" height="280" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 8 Q 0 0 8 0 L 272 0 Q 280 0 280 8 L 280 40 L 0 40 Z" fill="#1e3a8a" />
+    <text x="14" y="26" fill="#ffffff" font-size="14" font-weight="700">ACCOUNTS</text>
+    <rect x="210" y="10" width="56" height="20" rx="4" fill="#3b82f6" />
+    <text x="238" y="24" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">CORE</text>
+
+    <!-- account_id PK -->
+    <rect x="10" y="48" width="28" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" />
+    <text x="24" y="61" text-anchor="middle" fill="#b45309" font-size="10" font-weight="700">PK</text>
+    <text x="46" y="62" fill="#0f172a" font-size="12" font-weight="600">account_id</text>
+    <text x="265" y="62" text-anchor="end" fill="#64748b" font-size="11">INT (AUTO)</text>
+
+    <!-- account_number UK -->
+    <rect x="10" y="75" width="28" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1" />
+    <text x="24" y="88" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="700">UK</text>
+    <text x="46" y="88" fill="#0f172a" font-size="12" font-weight="600">account_number</text>
+    <text x="265" y="88" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(30)</text>
+
+    <!-- customer_id FK -->
+    <rect x="10" y="102" width="28" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="24" y="115" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="46" y="115" fill="#0f172a" font-size="12" font-weight="600">customer_id</text>
+    <text x="265" y="115" text-anchor="end" fill="#64748b" font-size="11">INT (REF cust)</text>
+
+    <!-- branch_id FK -->
+    <rect x="10" y="129" width="28" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="24" y="142" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="46" y="142" fill="#0f172a" font-size="12" font-weight="600">branch_id</text>
+    <text x="265" y="142" text-anchor="end" fill="#64748b" font-size="11">INT (REF br)</text>
+
+    <!-- account_type -->
+    <text x="46" y="170" fill="#0f172a" font-size="12">account_type</text>
+    <text x="265" y="170" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(20)</text>
+
+    <!-- balance CHECK >= 0 -->
+    <rect x="10" y="184" width="28" height="18" rx="3" fill="#dcfce7" stroke="#22c55e" stroke-width="1" />
+    <text x="24" y="197" text-anchor="middle" fill="#15803d" font-size="10" font-weight="700">CK</text>
+    <text x="46" y="197" fill="#0f172a" font-size="12" font-weight="600">balance</text>
+    <text x="265" y="197" text-anchor="end" fill="#15803d" font-size="11">DEC(15,2) >= 0</text>
+
+    <!-- account_status -->
+    <text x="46" y="225" fill="#0f172a" font-size="12">account_status</text>
+    <text x="265" y="225" text-anchor="end" fill="#64748b" font-size="11">Active/Frozen</text>
+
+    <!-- opened_at -->
+    <text x="46" y="252" fill="#0f172a" font-size="12">opened_at</text>
+    <text x="265" y="252" text-anchor="end" fill="#64748b" font-size="11">TIMESTAMP</text>
+  </g>
+
+
+  <!-- ================= ENTITY 4: USERS ================= -->
+  <g transform="translate(40, 480)" filter="url(#shadow)">
+    <rect width="280" height="240" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 8 Q 0 0 8 0 L 272 0 Q 280 0 280 8 L 280 40 L 0 40 Z" fill="#334155" />
+    <text x="14" y="26" fill="#ffffff" font-size="14" font-weight="700">USERS (AUTH)</text>
+    <rect x="210" y="10" width="56" height="20" rx="4" fill="#64748b" />
+    <text x="238" y="24" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">STAFF</text>
+
+    <!-- user_id PK -->
+    <rect x="10" y="48" width="28" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" />
+    <text x="24" y="61" text-anchor="middle" fill="#b45309" font-size="10" font-weight="700">PK</text>
+    <text x="46" y="62" fill="#0f172a" font-size="12" font-weight="600">user_id</text>
+    <text x="265" y="62" text-anchor="end" fill="#64748b" font-size="11">INT (AUTO)</text>
+
+    <!-- username UK -->
+    <rect x="10" y="75" width="28" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1" />
+    <text x="24" y="88" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="700">UK</text>
+    <text x="46" y="88" fill="#0f172a" font-size="12" font-weight="600">username</text>
+    <text x="265" y="88" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(50)</text>
+
+    <!-- password_hash -->
+    <text x="46" y="115" fill="#0f172a" font-size="12">password_hash</text>
+    <text x="265" y="115" text-anchor="end" fill="#64748b" font-size="11">BCrypt (60)</text>
+
+    <!-- full_name -->
+    <text x="46" y="142" fill="#0f172a" font-size="12">full_name</text>
+    <text x="265" y="142" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(100)</text>
+
+    <!-- role -->
+    <text x="46" y="169" fill="#0f172a" font-size="12">role</text>
+    <text x="265" y="169" text-anchor="end" fill="#64748b" font-size="11">ADMIN/TELLER</text>
+
+    <!-- branch_id FK -->
+    <rect x="10" y="183" width="28" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="24" y="196" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="46" y="196" fill="#0f172a" font-size="12" font-weight="600">branch_id</text>
+    <text x="265" y="196" text-anchor="end" fill="#64748b" font-size="11">INT (REF br)</text>
+
+    <!-- created_at -->
+    <text x="46" y="222" fill="#0f172a" font-size="12">created_at</text>
+    <text x="265" y="222" text-anchor="end" fill="#64748b" font-size="11">TIMESTAMP</text>
+  </g>
+
+
+  <!-- ================= ENTITY 5: BANK_TRANSACTIONS ================= -->
+  <g transform="translate(460, 500)" filter="url(#shadow)">
+    <rect width="280" height="310" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 8 Q 0 0 8 0 L 272 0 Q 280 0 280 8 L 280 40 L 0 40 Z" fill="#b91c1c" />
+    <text x="14" y="26" fill="#ffffff" font-size="14" font-weight="700">BANK_TRANSACTIONS</text>
+    <rect x="210" y="10" width="56" height="20" rx="4" fill="#ef4444" />
+    <text x="238" y="24" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">LEDGER</text>
+
+    <!-- transaction_id PK -->
+    <rect x="10" y="48" width="28" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" />
+    <text x="24" y="61" text-anchor="middle" fill="#b45309" font-size="10" font-weight="700">PK</text>
+    <text x="46" y="62" fill="#0f172a" font-size="12" font-weight="600">transaction_id</text>
+    <text x="265" y="62" text-anchor="end" fill="#64748b" font-size="11">INT (AUTO)</text>
+
+    <!-- transaction_reference -->
+    <text x="46" y="88" fill="#0f172a" font-size="12">transaction_reference</text>
+    <text x="265" y="88" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(60)</text>
+
+    <!-- account_id FK -->
+    <rect x="10" y="102" width="28" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="24" y="115" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="46" y="115" fill="#0f172a" font-size="12" font-weight="600">account_id</text>
+    <text x="265" y="115" text-anchor="end" fill="#64748b" font-size="11">INT (REF acc)</text>
+
+    <!-- related_account_id FK (Nullable) -->
+    <rect x="10" y="129" width="28" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="24" y="142" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="46" y="142" fill="#0f172a" font-size="12" font-weight="600">related_account_id</text>
+    <text x="265" y="142" text-anchor="end" fill="#64748b" font-size="11">INT (NULLABLE)</text>
+
+    <!-- transaction_type -->
+    <text x="46" y="170" fill="#0f172a" font-size="12">transaction_type</text>
+    <text x="265" y="170" text-anchor="end" fill="#64748b" font-size="11">DEP/WDL/TRF</text>
+
+    <!-- amount CHECK > 0 -->
+    <rect x="10" y="184" width="28" height="18" rx="3" fill="#dcfce7" stroke="#22c55e" stroke-width="1" />
+    <text x="24" y="197" text-anchor="middle" fill="#15803d" font-size="10" font-weight="700">CK</text>
+    <text x="46" y="197" fill="#0f172a" font-size="12" font-weight="600">amount</text>
+    <text x="265" y="197" text-anchor="end" fill="#15803d" font-size="11">DEC(15,2) > 0</text>
+
+    <!-- transaction_date -->
+    <text x="46" y="225" fill="#0f172a" font-size="12">transaction_date</text>
+    <text x="265" y="225" text-anchor="end" fill="#64748b" font-size="11">TIMESTAMP</text>
+
+    <!-- description -->
+    <text x="46" y="252" fill="#0f172a" font-size="12">description</text>
+    <text x="265" y="252" text-anchor="end" fill="#64748b" font-size="11">VARCHAR(255)</text>
+
+    <!-- transaction_status -->
+    <text x="46" y="280" fill="#0f172a" font-size="12">transaction_status</text>
+    <text x="265" y="280" text-anchor="end" fill="#64748b" font-size="11">Success/Failed</text>
+  </g>
+
+
+  <!-- ================= ENTITY 6: LOANS ================= -->
+  <g transform="translate(880, 480)" filter="url(#shadow)">
+    <rect width="280" height="330" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5" />
+    <path d="M 0 8 Q 0 0 8 0 L 272 0 Q 280 0 280 8 L 280 40 L 0 40 Z" fill="#047857" />
+    <text x="14" y="26" fill="#ffffff" font-size="14" font-weight="700">LOANS (CREDIT)</text>
+    <rect x="210" y="10" width="56" height="20" rx="4" fill="#10b981" />
+    <text x="238" y="24" text-anchor="middle" fill="#ffffff" font-size="10" font-weight="700">FACILITY</text>
+
+    <!-- loan_id PK -->
+    <rect x="10" y="48" width="28" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" />
+    <text x="24" y="61" text-anchor="middle" fill="#b45309" font-size="10" font-weight="700">PK</text>
+    <text x="46" y="62" fill="#0f172a" font-size="12" font-weight="600">loan_id</text>
+    <text x="265" y="62" text-anchor="end" fill="#64748b" font-size="11">INT (AUTO)</text>
+
+    <!-- customer_id FK -->
+    <rect x="10" y="75" width="28" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="24" y="88" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="46" y="88" fill="#0f172a" font-size="12" font-weight="600">customer_id</text>
+    <text x="265" y="88" text-anchor="end" fill="#64748b" font-size="11">INT (REF cust)</text>
+
+    <!-- branch_id FK -->
+    <rect x="10" y="102" width="28" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="24" y="115" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="46" y="115" fill="#0f172a" font-size="12" font-weight="600">branch_id</text>
+    <text x="265" y="115" text-anchor="end" fill="#64748b" font-size="11">INT (REF br)</text>
+
+    <!-- loan_type -->
+    <text x="46" y="142" fill="#0f172a" font-size="12">loan_type</text>
+    <text x="265" y="142" text-anchor="end" fill="#64748b" font-size="11">Home/Personal</text>
+
+    <!-- principal_amount CHECK > 0 -->
+    <rect x="10" y="156" width="28" height="18" rx="3" fill="#dcfce7" stroke="#22c55e" stroke-width="1" />
+    <text x="24" y="169" text-anchor="middle" fill="#15803d" font-size="10" font-weight="700">CK</text>
+    <text x="46" y="169" fill="#0f172a" font-size="12" font-weight="600">principal_amount</text>
+    <text x="265" y="169" text-anchor="end" fill="#15803d" font-size="11">DEC(15,2) > 0</text>
+
+    <!-- interest_rate -->
+    <text x="46" y="196" fill="#0f172a" font-size="12">interest_rate</text>
+    <text x="265" y="196" text-anchor="end" fill="#64748b" font-size="11">DEC(5,2)</text>
+
+    <!-- tenure_months -->
+    <text x="46" y="223" fill="#0f172a" font-size="12">tenure_months</text>
+    <text x="265" y="223" text-anchor="end" fill="#64748b" font-size="11">INT</text>
+
+    <!-- loan_status -->
+    <text x="46" y="250" fill="#0f172a" font-size="12">loan_status</text>
+    <text x="265" y="250" text-anchor="end" fill="#64748b" font-size="11">Pending/Approved</text>
+
+    <!-- outstanding_amount -->
+    <text x="46" y="277" fill="#0f172a" font-size="12">outstanding_amount</text>
+    <text x="265" y="277" text-anchor="end" fill="#64748b" font-size="11">DEC(15,2) >= 0</text>
+
+    <!-- application_date -->
+    <text x="46" y="304" fill="#0f172a" font-size="12">application_date</text>
+    <text x="265" y="304" text-anchor="end" fill="#64748b" font-size="11">TIMESTAMP</text>
+  </g>
+
+  <!-- Legend & Notation -->
+  <g transform="translate(40, 835)">
+    <rect width="1120" height="48" rx="6" fill="#ffffff" stroke="#e2e8f0" />
+    <text x="20" y="29" fill="#0f172a" font-size="12" font-weight="700">NOTATION KEY:</text>
+    <rect x="130" y="15" width="26" height="18" rx="3" fill="#fef3c7" stroke="#f59e0b" stroke-width="1" />
+    <text x="143" y="28" text-anchor="middle" fill="#b45309" font-size="10" font-weight="700">PK</text>
+    <text x="165" y="29" fill="#334155" font-size="12">Primary Key</text>
+
+    <rect x="260" y="15" width="26" height="18" rx="3" fill="#f1f5f9" stroke="#64748b" stroke-width="1" />
+    <text x="273" y="28" text-anchor="middle" fill="#334155" font-size="10" font-weight="700">FK</text>
+    <text x="295" y="29" fill="#334155" font-size="12">Foreign Key (Referential Integrity)</text>
+
+    <rect x="520" y="15" width="26" height="18" rx="3" fill="#e0f2fe" stroke="#0284c7" stroke-width="1" />
+    <text x="533" y="28" text-anchor="middle" fill="#0369a1" font-size="10" font-weight="700">UK</text>
+    <text x="555" y="29" fill="#334155" font-size="12">Unique Constraint</text>
+
+    <rect x="690" y="15" width="26" height="18" rx="3" fill="#dcfce7" stroke="#22c55e" stroke-width="1" />
+    <text x="703" y="28" text-anchor="middle" fill="#15803d" font-size="10" font-weight="700">CK</text>
+    <text x="725" y="29" fill="#334155" font-size="12">Engine CHECK Constraint</text>
+
+    <line x1="900" y1="24" x2="940" y2="24" stroke="#2563eb" stroke-width="2.5" marker-end="url(#arrow)" />
+    <text x="950" y="29" fill="#334155" font-size="12">1:N Cardinality</text>
+  </g>
+</svg>

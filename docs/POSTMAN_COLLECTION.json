@@ -1,0 +1,198 @@
+{
+  "info": {
+    "name": "Bank of Bagru — REST API Collection",
+    "_postman_id": "bank-of-bagru-apis-2026",
+    "description": "Postman REST API collection for Bank of Bagru full-stack RDBMS project.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Login (Admin)",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"admin123\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/auth/login",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "auth", "login"]
+        }
+      }
+    },
+    {
+      "name": "Dashboard - Live Stats",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/dashboard/stats",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "dashboard", "stats"]
+        }
+      }
+    },
+    {
+      "name": "Customers - Get All",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/customers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "customers"]
+        }
+      }
+    },
+    {
+      "name": "Customers - Register New",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"fullName\": \"Manish Sharma\",\n  \"dateOfBirth\": \"1996-08-15\",\n  \"email\": \"manish.sharma@example.com\",\n  \"phone\": \"9829988776\",\n  \"address\": \"Sector 5, Mansarovar, Jaipur\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/customers",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "customers"]
+        }
+      }
+    },
+    {
+      "name": "Accounts - Get All",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/accounts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "accounts"]
+        }
+      }
+    },
+    {
+      "name": "Accounts - Open New",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"customerId\": 1,\n  \"branchId\": 1,\n  \"accountType\": \"Savings\",\n  \"balance\": 10000.00\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/accounts",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "accounts"]
+        }
+      }
+    },
+    {
+      "name": "Transactions - Cash Deposit",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 1,\n  \"amount\": 5000.00,\n  \"description\": \"Postman Test Deposit\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transactions/deposit",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions", "deposit"]
+        }
+      }
+    },
+    {
+      "name": "Transactions - Cash Withdrawal",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"accountId\": 1,\n  \"amount\": 1500.00,\n  \"description\": \"Postman Test Withdrawal\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transactions/withdraw",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions", "withdraw"]
+        }
+      }
+    },
+    {
+      "name": "Transactions - Fund Transfer",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"sourceAccountId\": 1,\n  \"destinationAccountId\": 3,\n  \"amount\": 2000.00,\n  \"description\": \"Postman Inter-Account Transfer\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/transactions/transfer",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "transactions", "transfer"]
+        }
+      }
+    },
+    {
+      "name": "Database Info - Live Schema",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/database-info/schema",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "database-info", "schema"]
+        }
+      }
+    },
+    {
+      "name": "Database Info - Demonstration Query",
+      "request": {
+        "method": "GET",
+        "url": {
+          "raw": "http://localhost:8080/api/database-info/demo-query?key=JOIN_ACCOUNTS_CUSTOMERS_BRANCHES",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8080",
+          "path": ["api", "database-info", "demo-query"],
+          "query": [
+            { "key": "key", "value": "JOIN_ACCOUNTS_CUSTOMERS_BRANCHES" }
+          ]
+        }
+      }
+    }
+  ]
+}
